@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_starter/authentication/bloc/authentication_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_starter/routes.dart';
+import '../widgets/google_sign_in_button.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -130,6 +131,25 @@ class _LoginPageState extends State<LoginPage> {
                                 ? const CircularProgressIndicator()
                                 : const Text('Login'),
                       ),
+                      const SizedBox(height: 16),
+                      Row(
+                        children: [
+                          const Expanded(child: Divider()),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: Text(
+                              'OR',
+                              style: TextStyle(
+                                color: Colors.grey.shade600,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          const Expanded(child: Divider()),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      GoogleSignInButton(isLoading: _isLoading),
                       const SizedBox(height: 16),
                       TextButton(
                         onPressed:
