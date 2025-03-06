@@ -7,6 +7,8 @@ import 'package:flutter_starter/authentication/presentation/pages/splash_page.da
 import 'package:flutter_starter/authentication/services/auth_dependencies.dart';
 import 'package:flutter_starter/authentication/utils/stream_to_listenable.dart';
 import 'package:flutter_starter/dashboard/presentation/pages/dashboard_page.dart';
+import 'package:flutter_starter/profile/presentation/pages/profile_page.dart'; // Add this import
+import 'package:flutter_starter/settings/presentation/pages/settings_page.dart'; // Add this import
 import 'package:flutter_starter/routes.dart';
 import 'package:go_router/go_router.dart';
 
@@ -44,6 +46,16 @@ class MyApp extends StatelessWidget {
           path: AppRouter.signupPath,
           name: AppRouteName.signup,
           builder: (context, state) => const SignupPage(),
+        ),
+        GoRoute(
+          path: AppRouter.profilePath,
+          name: AppRouteName.profile,
+          builder: (context, state) => const ProfilePage(),
+        ),
+        GoRoute(
+          path: AppRouter.settingsPath,
+          name: AppRouteName.settings,
+          builder: (context, state) => const SettingsPage(),
         ),
       ],
       refreshListenable: StreamToListenable([authBloc.stream]),
