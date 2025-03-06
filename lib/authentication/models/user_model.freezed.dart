@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserModel implements DiagnosticableTreeMixin {
 
- String get email; String get username; String get name; bool get isAdmin; bool get isAnonymous;
+ String get email; String get username; String get name; bool get isAdmin; bool get isAnonymous; String? get avatar;
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -30,21 +30,21 @@ $UserModelCopyWith<UserModel> get copyWith => _$UserModelCopyWithImpl<UserModel>
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'UserModel'))
-    ..add(DiagnosticsProperty('email', email))..add(DiagnosticsProperty('username', username))..add(DiagnosticsProperty('name', name))..add(DiagnosticsProperty('isAdmin', isAdmin))..add(DiagnosticsProperty('isAnonymous', isAnonymous));
+    ..add(DiagnosticsProperty('email', email))..add(DiagnosticsProperty('username', username))..add(DiagnosticsProperty('name', name))..add(DiagnosticsProperty('isAdmin', isAdmin))..add(DiagnosticsProperty('isAnonymous', isAnonymous))..add(DiagnosticsProperty('avatar', avatar));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserModel&&(identical(other.email, email) || other.email == email)&&(identical(other.username, username) || other.username == username)&&(identical(other.name, name) || other.name == name)&&(identical(other.isAdmin, isAdmin) || other.isAdmin == isAdmin)&&(identical(other.isAnonymous, isAnonymous) || other.isAnonymous == isAnonymous));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserModel&&(identical(other.email, email) || other.email == email)&&(identical(other.username, username) || other.username == username)&&(identical(other.name, name) || other.name == name)&&(identical(other.isAdmin, isAdmin) || other.isAdmin == isAdmin)&&(identical(other.isAnonymous, isAnonymous) || other.isAnonymous == isAnonymous)&&(identical(other.avatar, avatar) || other.avatar == avatar));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,email,username,name,isAdmin,isAnonymous);
+int get hashCode => Object.hash(runtimeType,email,username,name,isAdmin,isAnonymous,avatar);
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'UserModel(email: $email, username: $username, name: $name, isAdmin: $isAdmin, isAnonymous: $isAnonymous)';
+  return 'UserModel(email: $email, username: $username, name: $name, isAdmin: $isAdmin, isAnonymous: $isAnonymous, avatar: $avatar)';
 }
 
 
@@ -55,7 +55,7 @@ abstract mixin class $UserModelCopyWith<$Res>  {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) _then) = _$UserModelCopyWithImpl;
 @useResult
 $Res call({
- String email, String username, String name, bool isAdmin, bool isAnonymous
+ String email, String username, String name, bool isAdmin, bool isAnonymous, String? avatar
 });
 
 
@@ -72,14 +72,15 @@ class _$UserModelCopyWithImpl<$Res>
 
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? email = null,Object? username = null,Object? name = null,Object? isAdmin = null,Object? isAnonymous = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? email = null,Object? username = null,Object? name = null,Object? isAdmin = null,Object? isAnonymous = null,Object? avatar = freezed,}) {
   return _then(_self.copyWith(
 email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String,username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,isAdmin: null == isAdmin ? _self.isAdmin : isAdmin // ignore: cast_nullable_to_non_nullable
 as bool,isAnonymous: null == isAnonymous ? _self.isAnonymous : isAnonymous // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -90,7 +91,7 @@ as bool,
 @JsonSerializable()
 
 class _UserModel extends UserModel with DiagnosticableTreeMixin {
-  const _UserModel({required this.email, required this.username, required this.name, this.isAdmin = false, this.isAnonymous = false}): super._();
+  const _UserModel({required this.email, required this.username, required this.name, this.isAdmin = false, this.isAnonymous = false, this.avatar}): super._();
   factory _UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 
 @override final  String email;
@@ -98,6 +99,7 @@ class _UserModel extends UserModel with DiagnosticableTreeMixin {
 @override final  String name;
 @override@JsonKey() final  bool isAdmin;
 @override@JsonKey() final  bool isAnonymous;
+@override final  String? avatar;
 
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
@@ -113,21 +115,21 @@ Map<String, dynamic> toJson() {
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'UserModel'))
-    ..add(DiagnosticsProperty('email', email))..add(DiagnosticsProperty('username', username))..add(DiagnosticsProperty('name', name))..add(DiagnosticsProperty('isAdmin', isAdmin))..add(DiagnosticsProperty('isAnonymous', isAnonymous));
+    ..add(DiagnosticsProperty('email', email))..add(DiagnosticsProperty('username', username))..add(DiagnosticsProperty('name', name))..add(DiagnosticsProperty('isAdmin', isAdmin))..add(DiagnosticsProperty('isAnonymous', isAnonymous))..add(DiagnosticsProperty('avatar', avatar));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserModel&&(identical(other.email, email) || other.email == email)&&(identical(other.username, username) || other.username == username)&&(identical(other.name, name) || other.name == name)&&(identical(other.isAdmin, isAdmin) || other.isAdmin == isAdmin)&&(identical(other.isAnonymous, isAnonymous) || other.isAnonymous == isAnonymous));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserModel&&(identical(other.email, email) || other.email == email)&&(identical(other.username, username) || other.username == username)&&(identical(other.name, name) || other.name == name)&&(identical(other.isAdmin, isAdmin) || other.isAdmin == isAdmin)&&(identical(other.isAnonymous, isAnonymous) || other.isAnonymous == isAnonymous)&&(identical(other.avatar, avatar) || other.avatar == avatar));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,email,username,name,isAdmin,isAnonymous);
+int get hashCode => Object.hash(runtimeType,email,username,name,isAdmin,isAnonymous,avatar);
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'UserModel(email: $email, username: $username, name: $name, isAdmin: $isAdmin, isAnonymous: $isAnonymous)';
+  return 'UserModel(email: $email, username: $username, name: $name, isAdmin: $isAdmin, isAnonymous: $isAnonymous, avatar: $avatar)';
 }
 
 
@@ -138,7 +140,7 @@ abstract mixin class _$UserModelCopyWith<$Res> implements $UserModelCopyWith<$Re
   factory _$UserModelCopyWith(_UserModel value, $Res Function(_UserModel) _then) = __$UserModelCopyWithImpl;
 @override @useResult
 $Res call({
- String email, String username, String name, bool isAdmin, bool isAnonymous
+ String email, String username, String name, bool isAdmin, bool isAnonymous, String? avatar
 });
 
 
@@ -155,14 +157,15 @@ class __$UserModelCopyWithImpl<$Res>
 
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? email = null,Object? username = null,Object? name = null,Object? isAdmin = null,Object? isAnonymous = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? email = null,Object? username = null,Object? name = null,Object? isAdmin = null,Object? isAnonymous = null,Object? avatar = freezed,}) {
   return _then(_UserModel(
 email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String,username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,isAdmin: null == isAdmin ? _self.isAdmin : isAdmin // ignore: cast_nullable_to_non_nullable
 as bool,isAnonymous: null == isAnonymous ? _self.isAnonymous : isAnonymous // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

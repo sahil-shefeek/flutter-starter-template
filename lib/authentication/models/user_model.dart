@@ -15,6 +15,7 @@ abstract class UserModel with _$UserModel {
     required String name,
     @Default(false) bool isAdmin,
     @Default(false) bool isAnonymous,
+    String? avatar,
   }) = _UserModel;
 
   factory UserModel.anonymous() =>
