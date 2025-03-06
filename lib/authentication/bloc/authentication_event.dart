@@ -32,3 +32,5 @@ class AccessTokenUpdated extends AuthenticationEvent {
 
   AccessTokenUpdated(this.accessToken);
 }
+
+class GoogleSignIn extends AuthenticationEvent {}

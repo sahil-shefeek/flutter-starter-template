@@ -90,6 +90,24 @@ class AuthenticationBloc
       }
     });
 
+    // Add handler for Google Sign-In
+    on<GoogleSignIn>((event, emit) async {
+      emit(AuthenticationLoadInProgress(accessToken: _accessToken));
+      try {
+        final auth = await _authService.googleLogin();
+
+        if (auth.isAuthenticated) {
+          _accessToken = auth.accessToken;
+          emit(Authenticated(auth));
+        } else {
+          _accessToken = null;
+          emit(Unauthenticated());
+        }
+      } catch (e) {
+        emit(AuthenticationFailure(e.toString(), accessToken: _accessToken));
+      }
+    });
+
     // Add event to update access token
     on<AccessTokenUpdated>((event, emit) {
       _accessToken = event.accessToken;

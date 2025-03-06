@@ -2,10 +2,12 @@ import 'package:dio/dio.dart';
 import '../models/user_model.dart';
 import '../models/auth_model.dart';
 import 'token_service.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
   final Dio _dio;
   final TokenService _tokenService;
+  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email', 'profile']);
 
   AuthService(this._dio, this._tokenService);
 
@@ -65,6 +67,48 @@ class AuthService {
       return AuthModel(accessToken: accessToken, user: user);
     } catch (e) {
       throw _handleError(e, 'Registration failed');
+    }
+  }
+
+  // Google Sign-In method
+  Future<AuthModel> googleLogin() async {
+    try {
+      // Start the Google Sign-In process
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+
+      if (googleUser == null) {
+        throw Exception('Google Sign-In was cancelled');
+      }
+
+      // Get the authentication details
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+
+      // Get ID token and access token
+      final String? accessToken = googleAuth.accessToken;
+
+      if (accessToken == null) {
+        throw Exception('Could not get Google access token');
+      }
+
+      // Send the access token to your backend
+      final response = await _dio.post(
+        '/auth/google/callback/',
+        data: {'access_token': accessToken},
+      );
+
+      final backendAccessToken = response.data['access'];
+      final refreshToken = response.data['refresh'];
+
+      // Store the refresh token
+      await _tokenService.saveRefreshToken(refreshToken);
+
+      // Fetch user info using the token from your backend
+      final user = await _fetchUserInfo(backendAccessToken);
+
+      return AuthModel(accessToken: backendAccessToken, user: user);
+    } catch (e) {
+      throw _handleError(e, 'Google login failed');
     }
   }
 
